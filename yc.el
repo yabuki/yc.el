@@ -554,15 +554,51 @@ OBJ を返却する。"
 
 
 (defun yc-l2n (int)
-  (concat (list (logand (ash int -24) 255)
-		(logand (ash int -16) 255)
-		(logand (ash int  -8) 255)
-		(logand      int      255))))
+  (cond
+   ((>= emacs-major-version 23)
+; For Emacs 23 (Internal Encode is UTF8)
+    (string-make-unibyte
+     (concat (list (logand (ash int -24) 255)
+		   (logand (ash int -16) 255)
+		   (logand (ash int  -8) 255)
+		   (logand      int      255))))
+    ) ; clause
+   (t 
+; For Emacs22, XEmacs21
+    (concat (list (logand (ash int -24) 255)
+		  (logand (ash int -16) 255)
+		  (logand (ash int  -8) 255)
+		  (logand      int      255)))
+    ) ; t
+   ) ; cond
+  ) ; defun
 (defun yc-s2n (int)
-  (concat (list (logand (ash int -8) 255)
-		(logand      int     255))))
+  (cond
+   ((>= emacs-major-version 23)
+; For Emacs 23 (Interanal Encode is UTF8)
+    (string-make-unibyte
+     (concat (list (logand (ash int -8) 255)
+		   (logand      int     255))))
+    ) ; clause
+   (t
+; For Emacs 22, XEmacs 21
+    (concat (list (logand (ash int -8) 255)
+		  (logand      int     255)))
+    ) ; t
+   ) ; cond
+  ) ; defun
 (defun yc-c2n (int)
-  (concat (list (logand int 255))))
+  (cond
+   ((>= emacs-major-version 23)
+; For Emacs 23 (Interanal Encode is UTF8)
+    (string-make-unibyte (concat (list (logand int 255))))
+    ) ; clause
+   (t
+; For Emacs 22, XEmacs 21
+    (concat (list (logand int 255)))
+    ) ; t
+   ) ; cond
+  ) ; defun
 (defun yc-a2n (str)
   (concat str (yc-c2n 0)))
 (defun yc-w2n (str)
@@ -597,9 +633,21 @@ OBJ を返却する。"
       (setq dst (concat
 		 dst
 		 (decode-coding-string 
-		  (concat (and (/= (car src) 0) (char-to-string (car src)))
-			  (char-to-string (cadr src)))
-		  yc-coding))
+		  (cond
+		   ((>= emacs-major-version 23)
+; For Emacs 23
+		    (concat (and (/= (car src) 0)
+				  (char-to-string (unibyte-char-to-multibyte (car src))))
+			     (char-to-string (unibyte-char-to-multibyte (cadr src))))		    
+		    ) ; clause
+		   ( t
+; For Emacs 22, XEmacs 21
+		     (concat (and (/= (car src) 0) (char-to-string (car src)))
+			     (char-to-string (cadr src)))
+		   ) ; t
+		  ) ; cond
+		  yc-coding) ; decode-coding-string
+		 ) ; concat
 	    src (cddr src)))
     dst))
 
@@ -2365,11 +2413,12 @@ OBJ を返却する。"
   (setq yc-selected-window (cons (selected-window) yc-selected-window))
   (unless (featurep 'xemacs)
     (set-minibuffer-window (minibuffer-window)))
+  (set-window-buffer (minibuffer-window) (get-buffer-create yc-select-buffer))
   (yc-redirect-frame-focus
    (window-frame (car yc-selected-window))
    (window-frame (select-window (minibuffer-window))))
   (raise-frame (window-frame (select-window (minibuffer-window))))
-  (set-window-buffer (minibuffer-window) (get-buffer-create yc-select-buffer))
+;  (set-window-buffer (minibuffer-window) (get-buffer-create yc-select-buffer))
   (let ((l lst))
     (while l
       (setq yc-select-markers (cons (point-marker) yc-select-markers))
@@ -2477,8 +2526,19 @@ OBJ を返却する。"
       (setq row (car (yc-wclist-liner-to-code tmp)))
       (setq col (cdr (yc-wclist-liner-to-code tmp)))
       (setq lst (cons
-		 (decode-coding-string
-		  (concat (char-to-string row) (char-to-string col)) 'euc-jp)
+		  (cond
+		   ((>= emacs-major-version 23)
+		    (decode-coding-string
+		    (string-make-unibyte 
+		     (concat (char-to-string row) (char-to-string col)))
+		    'euc-jp)
+		    ) ; clause
+		   ( t
+		     (decode-coding-string
+		      (concat (char-to-string row) (char-to-string col))
+		      'euc-jp)
+		   ) ; t
+		  ) ; cond
 		 lst))
       (setq idx (1+ idx)))
     (reverse lst)))
