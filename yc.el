@@ -1,4 +1,4 @@
-;;; yc.el by knak 2004.07.14
+;;; yc.el by knak 2008.02.13
 
 ;;; YC は "Yet another Canna client" の略です。
 ;;; 頭文字をとると YACC になっちゃうんだもん (;_;)
@@ -379,8 +379,13 @@ OBJ を返却する。"
 			   server))
     (setq yc-server
 	  (cond ((string= yc-server-host "unix")
-		 (let ((process-connection-type nil))
-		   (start-process "canna" yc-debug yc-icanna-path)))
+		 (if (featurep 'make-network-process)
+		     (make-network-process
+		      :name "canna"
+		      :buffer yc-debug
+		      :remote "/tmp/.iroha_unix/IROHA")
+		   (let ((process-connection-type nil))
+		     (start-process "canna" yc-debug yc-icanna-path))))
 		(t (with-timeout (1 nil)
 		     (condition-case nil
 			 (open-network-stream
@@ -4041,15 +4046,14 @@ point から行頭方向に同種の文字列が続く間を漢字変換します。
  "japanese-yc" "Japanese" 'yc-activate
  "あ" "Romaji -> Hiragana -> Kanji&Kana"
  nil)
-(defun force-yc-input-mode ()
-  (set-language-info "Japanese" 'input-method "japanese-yc")
-  (setq default-input-method "japanese-yc"))
+(set-language-info "Japanese" 'input-method "japanese-yc")
+;(setq default-input-method "japanese-yc"))
 
-(yc-setup)
-(when (and yc-connect-server-at-startup (yc-server-check))
-  (yc-init)
-  (force-yc-input-mode)
-  )
+;(yc-setup)
+;(when (and yc-connect-server-at-startup (yc-server-check))
+;  (yc-init)
+;  (force-yc-input-mode)
+;  )
 
-(defconst yc-version "4.0.13")
+(defconst yc-version "5.0.0")
 (provide 'yc)
