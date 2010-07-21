@@ -1,3 +1,10 @@
+2008-02-13  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+ * 5.0.0 足掛け４年ぶりの更新。知らぬ間にemacsがUNIXドメインソケットを使えるよう
+	になったので対応してみる。コード中には昔のicannaの呼出ロジックも残って
+	いるが make-network-process を持った emacs-22 以上の emacsen なら、
+	そちらを使うので取り敢えず el 単体で配布してみる。
+
 2004-07-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
 
 * 4.0.13 yc load 時に input-method が japanese-yc にならない問題の対処
