@@ -1,0 +1,699 @@
+2004-07-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 4.0.13 yc load 時に input-method が japanese-yc にならない問題の対処
+	 emacs 起動時 に yc を load して emacs の splash が壊れる人は
+	 yc-connect-server-at-startup に nil を指定すること
+	 (太田@NEC さん ご指摘ありがとうございます)
+* 4.0.13 fence-mode で字種変換した後に文字を入力し始めると
+	 平仮名に字種変換した文字列が平仮名に戻ってしまう問題の対処
+	 (中尾さん ご指摘ありがとうございます)
+
+2004-07-12  AIDA Shinra <shinra@j10n.org>
+
+* 4.0.12 下記問題の対処
+	 use-dictionaryに自動登録辞書を書くとエラーになる
+         UTF-8環境で正しく.cannaを読み込めない
+         最近のemacsでycを使うと、起動時のsplashなどが出ない
+	 (AIDA Shinra さん パッチありがとうございます)
+
+2004-06-21  Yono Oak <oak@intaa.net>
+
+* 4.0.11 select-mode の [up],[down] のキーバインドを "\C-p","\C-n" に
+	 合わせる
+	 ( Yono Oak さん ご指摘ありがとうございます)
+	
+2004-06-06  Mito <co_mon@ybb.ne.jp>
+
+* 4.0.10 かな漢字変換モードで "kanji" を入力後、C-n で片仮名に変換す
+	 ると "カnジ" になってしまうので、"カンジ" になるように修正
+	 する。
+	
+2004-04-20  pocket pet <poketpet@netscape.net>
+
+* 4.0.9 NetBSD で make できるようにする
+	(pocket pet さん パッチありがとうございます)
+
+2004-03-05  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.8 漢字変換確定直後に操作した場合に画面が崩れる場合がある事への
+	対処として漢字変換確定時に描画をflushする
+	(渡辺さん ご報告ありがとうございます)
+
+2004-02-20  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.7 ローマ字入力において"っ"、"ん"の処理がおかしかった問題の対処
+	(中尾さん、かずひこさんご報告ありがとうございます)
+
+2004-02-05  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.6 花配列を使用している場合の濁点、半濁点の扱いを修正
+	
+2004-01-04  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.5 group名を決める処理で system-type の判定に windows-nt を追加
+
+2003-12-26  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.4 花配列対応
+	yc-lookup-rH-internal と yc-generate-romaji-list を修正
+	複数 alphabet で半濁点となる key sequence の問題対応
+
+2003-12-07  Kaoru Nakajima  <knak@ceres.dti.ne.jp>
+
+* 4.0.3 group名の取得処理にて条件判断を誤ってgroup名の取得に成功した場合に
+	も次の手段を試み、結局、固定値 "user" を返していた。条件判断を修正 
+	(win の時は無条件で "user" それ以外の場合は id -> perl -> "user" 
+	の成功順に変更)
+
+* 4.0.3 group名の取得処理時に perl を起動した場合に perl が locale 関係で 
+	warning しないように 環境変数 LC_ALL=C で perl を起動するようにす
+	る。(倉田さん ご指摘ありがとうございます)
+
+2003-11-26  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 4.0.2 ~/.canna で指定するファイルの記述としてファイル名のみと絶対パスの
+	指定を可能にする。(たかのさん ご指摘ありがとうございます)
+
+2003-11-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 4.0.1 icanna のパスを設定できるようにする。
+	(Debian プロジェクトの上川さん パッチありがとうございます)
+
+2003-10-06  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 4.0.0 unix domain socket のみサポートしている cannaserver とも通信可能と
+	する。
+
+2003-06-02  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.8 かな入力で字種変換した場合に入力したひらがなの順序が入れ替わってし
+	まう問題の対処(yc-generate-romaji-list が長さ0の文字列を生成してい
+	た問題)。(たかはしさん ご指摘ありがとうございます)
+
+2003-05-11  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.7 onX で複数フレームで minibuffer へ一覧表示を行うときに表示されるフ
+	レームと表示されないフレームがあった問題の対処
+
+2003-05-10  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.6 emasc-20.7 -nw で cursor という face が無いためにエラーする問題の
+	対処(石井さん ご指摘ありがとうございます)
+
+2003-05-07  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.5 background-mode が dark の時も fence-mode の色が暗かった問題の対処。
+	defface してみる。(Debian Projectの 上川さん ご指摘ありがとうござ
+	います)
+
+2003-05-07  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.5 xemacs-21.4 において一覧モードにするときに使っていた関数を 
+	set-minibuffer-window から active-minibuffer-window に変更。*
+
+* 3.5.5 customize にちょっと対応してみた。 M-x customize-group yc で
+	設定可能
+
+2003-04-28  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.4 set-face-hilight-p の typo を set-face-highlight-p に修正(堀田さん 
+	ご指摘ありがとうございます)
+
+2003-04-26  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.3 yc-fence-face と yc-current-face の設定部分がバグってたので修正
+	(堀田さん ご指摘ありがとうございます)
+
+2003-04-06  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.3 xemacs-21.5.x の frame-property で色をとってくると色の名前ではなく、
+	color-instance を返却するため、make-face が失敗していたと思われる
+	対処???(堀田さん ご指摘ありがとうございます)
+
+2003-03-28  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.2 yc-fence-face と yc-current-face のカスタマイズを上書きするbugがあっ
+	たので修正(大原さんご指摘ありがとうございます)
+
+2003-03-24  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.1 長音記号「ー」を半角カナに変換可能とする。yc-fence-face と 
+	yc-current-face で変換中の face を設定できるようにする。(大原さん
+	ご指摘ありがとうございます)
+
+2002-11-29  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.5.0 変数yc-enable-hankakuをnilにすることにより半角かなを字種変換候補と
+	して無効とする。非nilの場合は半角かなを字種変換候補に含める。
+
+2002-10-26  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.13 かな入力時に debug 用のメッセージが minibuffer に出力していた部分
+	を停止(上川＠Debian Project さん パッチありがとうございます)
+
+2002-10-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.12 emacs-21.2 において minibuffer付きの multi frame 状態で変換中に 
+	minibuffer への表示がうまく行かない frame がある問題の対処。
+	minibuffer に表示を始めるときに、
+	(set-minibuffer-window (minibuffer-window)) する
+
+2002-10-10  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.11 fence-mode で入力中に defsymbol している文字列を入力するとエラー
+	になる可能性があった問題の対処(上川@Debian Project さん ご指摘あり
+	がとうございます)
+
+2002-10-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.10 yc-subsequence で要素数が足りないときに失敗する問題の対処。
+	(上川＠Debian Projectさん ご指摘ありがとうございます)
+
+2002-08-25  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.9 fence-modeでローマ字入力するときに複数文字となる音節(例えば、
+	"kyo")を入力するとyc-generate-romaji-list が正しく処理できなかった
+	問題の対処
+
+2002-08-23  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.8 かな入力で入力した文字列の字種変換がおかしかった問題の対処。(藤本
+	さん ご指摘ありがとうございます)
+
+2002-06-27  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.7 fence-mode で入力時 .canna で defsymbol している記号が漢字変換時の
+	候補として出て来ない問題の対処。(中尾@yc.el user さん ご指摘ありが
+	とうございます)
+
+* 3.4.7 emacs-21.2 on X で minor-mode-menu のトグル操作に対応した。
+
+2002-04-18  Kaoru Nakjima <knak@ceres.dti.ne.jp>
+
+* 3.4.6 促音含みの字種変換がおかしかった対処。かな入力時の動作は不明
+	(籠宮 隆之さん ご指摘ありがとうございます)
+
+2002-04-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.5 fence モードで "n" を "ん" に置換せずに変換処理に流れていたのを修
+	正(中尾さん ご指摘ありがとうございます)
+
+2002-04-13  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.4 fence モードで入力中に C-p で alphabet → ａｌｐｈａｂｅｔ →
+	半角カタカナ → カタカナ → ひらがな の順序で、C-n で逆順に字種変
+	換するようにした.。 字種変換時の C-n / C-p が Canna と真逆の対処
+
+2002-04-10  Kaoru Nakjima <knak@ceres.dti.ne.jp>
+
+* 3.4.3 半角カナ追加に伴い変換中の C-h / C-k / C-l / C-u が、それぞれ
+	ひらがな / カタカナ / alphabet / ａｌｐｈａｂｅｔ に割付くように調
+	整。かつ、記号を変換したときに字種変換リストを生成できない問題があっ
+	たので、この問題の対処。あと、前述した C-k のように半角カナを出す
+	キーはどうしようかな？とりあえずは未割り付け。fence-mode から字種
+	変換時に C-n / C-p が真逆になっているのは認識したけど、対処は時間
+	がかかりそう<br><br>
+
+2002-04-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.2 字種変換リストに半角カナも出るようになった
+	(Takayuki Nakao 作。 中尾さんありがとうございます)
+
+2002-02-24  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.4.1 yc-use-color 時で blink-cursor-mode が有効、または、 cursor-type 
+	を変更している場合に、fence mode で blink や cursor-type 変更を無
+	効にするようにする。xemacs は未確認。
+
+* 3.4.0 canna の初期化ファイルをdefault.canna -&gt ~/.canna と読んでいたが、~
+	 /.canna があった場合には default.canna を読まないようにした。この
+	 変更で「かな入力」の人は ~/.canna に (setq romkana-table
+	 "kana.cbp") と書くだけで「かな入力」できるようになる。
+
+* 3.4.0 かな入力で yc-conv-rH-list が null 文字列を生成する場合があったの
+	で、かな入力で fence 入力中に yc-edit-backward-delete-char を 2 回
+	入力しないと文字が消せなかった問題の対処。
+
+* 3.4.0 かな入力で字種変換したときにローマ字が無茶苦茶になるので、ひらがな
+	からローマ字を生成するようにする。
+
+2002-01-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.5 yc-canna-lib-path の設定で /usr/pkg/share/canna も見るようにする
+
+2001-12-29  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.4 ローマ字-仮名変換テーブルの処理の変更と、途中で cannaserver が落ち
+	てしまった時にちゃんと終了しなかった問題の対処(まつもと ゆきひろ 
+	さん パッチありがとうございます)
+
+2001-09-22  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.3 MS-Windows 上でも yc-use-color の設定を有効とする(近藤さん ご指摘
+	ありがとうございます)
+
+
+2001-09-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.2 Win2000+cygwin+emacs-21.0.105 で canna との接続が失敗する問題の対
+	処。Win2000+cygwin の id -gn がひら仮名のグループ名を返却するため、
+	cannaプロトコルの notice-group-name が失敗する。
+
+* 3.3.2 yc.el ファイルの漢字コードが EUC-JP になっていたのを iso-2022-jp 
+	に変更。(かずひこ＠電子辞書／書体オープンラボなど さん ご指摘あり
+	がとうございました)
+
+
+2001-05-30  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.1 yc-colorize が 2 個あったので一つにする(石井さん ご指摘ありがとう
+	ございます)。ひらがな編集中に fence 外に文字飾りがはみ出すことがあっ
+	た問題を修正。
+
+2001-05-28  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.3.0 fenceの飾り(||)を表示する/しないを設定できるようにする。設定方法は
+	<a href="#variables">yc-use-fence</a>を参照。yc-use-color で onX 
+	で使っていた人は、(setq yc-use-fence (not (eq window-system 'x))) 
+	してくれれば、以前と同じになる、と思う。
+
+2001-05-23  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.8 on X で &lt Meta&gt+&lt j&gt でbugる問題の対処(山田栄成さん ご指摘
+	ありがとうございます)。その他、Emacs21.0.x on KTerm で 
+	yc-usr-color を t にしたときに fence をつけないようにしてみた。見
+	にくい人は
+	(setq yc-use-color (if (eq window-system 'x) t nil))
+	して下さい。
+
+2001-05-23  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.7 ANK-字種変換をつけてみる \M-j で ANK-ひらがな-カタカナ-ＡＬＰＨＡ
+	ＢＥＴ-ANK と変換する
+
+2001-03-06  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.6 .canna の評価処理の改善(谷さんありがとうございます)
+	** setq の戻り値を有効にする
+	** 無視する関数の引数の評価をしない
+	** quote したリストの評価をしない
+	** let の初期化部分で変数名を関数扱いしない
+
+
+2001-01-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.5 辞書リストの初期値を固定値にした
+
+2001-01-16  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.4 default.canna および .canna が存在しない場合に辞書リストの初期化洩
+	れを対処。(くりおかさん ご指摘ありがとうございます)
+
+2000-12-25  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.3 3.2.2 の対応方法だと emacs-20.x の起動画面が壊れるので、
+	(yc-server-check) は cannaserver とのコネクションを張りっぱぁにし
+	て、速攻で初期化するようにする。
+
+2000-12-16  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.2
+	(load "yc") 後、(yc-mode 1) あるいは、(global-yc-mode 1) あるいは、
+	C-\ をするまでの間に、/usr/local/canna/bin/cannastat を動かすと 
+	cannaserver が死んでしまう問題の対処。(なべやさん ご指摘ありがとう
+	ございます)
+
+2000-12-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.1 X 上で無くても yc-usr-color が有効になるようにする。
+
+2000-12-08  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.2.0 yc-use-color が 非nil の時に xemacs は extent を emacs は overlay 
+	を使うようにした。emacs が overlay を使うのは従来通り。
+
+2000-12-06  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.11 overlay を格納する変数を make-variable-buffer-local するつもりが 
+	make-local-variable していた。修正済。(かずひこ＠電子{辞書,書体}オー
+	プンラボなど さん ご指摘ありがとうございます)
+
+* 3.1.11 xemacs で C-x C-c をしたときに、何故か condition-case で signal 
+	を拾ってくれないので、set-process-sentinel を nil にするようにした。
+
+2000-12-04  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.10 emacs-21.0.90 を on X で 使っていると minibuffer に複数行表示でき
+	るようになったみたいなんだけど、候補を複数行表示したときに 
+	minibuffer を抜けても、minibuffer が元の大きさに戻らないので、
+	message 出力をして、minibuffer の大きさを戻すようにした。
+
+2000-11-21  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.9 emacs-21.0.90対応。(require 'viper)を止める。
+
+2000-11-18  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.8 xemacs でバイトコンパイルしたyc.elc を使ってカラー対応を有効にする
+	と、frame-parameter が無いと言われる問題の対処。(かずひこ＠電子{辞
+	書,書体}オープンラボなど さん ご指摘ありがとうございます)
+
+* 3.1.8 xemacs で global-yc-mode が効かないようにみえる問題の対処。(かずひ
+	こ＠電子{辞書,書体}オープンラボなど さん ご指摘ありがとうございま
+	す)
+
+2000-11-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.7 xemacs でも色が付くようにした。ただし、fsf-compat pkg が install 
+	されている場合に限るけど。
+
+* 3.1.7 .canna を評価するときに XEmacs で文字を認識できなかった問題を対処
+	(かずひこ＠電子{辞書,書体}オープンラボなど さん ご指摘ありがとうご
+	ざいます)
+
+2000-11-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.6 バイトコンパイルしたときに yc-put-symbol で エラー "Symbol's value
+	as variable is void: res" が発生し、C-g を入れないと戻れなくなる問
+	題の対処。ついでに、res / args / str の名前を yc-res / yc-args /
+	yc-str に変更した。(石井さん ご指摘ありがとうございます)
+
+2000-11-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.5 user辞書をbushu辞書と誤設定していた。対処済。いやはや、何ともお恥
+	ずかしい話で面目無い。
+
+2000-10-22  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.4 signal と error-message-string の使い方を変更。と言うか、
+	cannaserver とのコネクションが切れたときのエラーメッセージの出方を
+	変更した。
+
+2000-10-20  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.3 cannaserver との接続が切れたときの対策を強化。cannaserver との接続
+	が切れたらエラーしていたところもエラーせずに処理するようにした。こ
+	れで cannaserver が死んでいても fence でひらがなを入力することはで
+	きるし、cannaserver と接続し直せれば再びかな漢字に変換も可能となる。
+	ただし、emacs 起動時に cannaserver とつながらないと yc-mode および 
+	global-yc-mode と M-x set-input-method japanese-yc に自動的になら
+	ないので、注意すること。
+
+2000-10-18  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.2 変換中の各文節の読みをキャッシュする。多少は速くなったと思う。
+
+2000-10-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.1.1 字種変換がおかしくなっているはずなので yc-reset-alphabet の 
+	yc-yomi を yc-get-yomi に戻す
+
+* 3.1.0 再変換時 C-g 後に C-j で再変換するようにしてみた。
+
+* 3.0.1 記号モードで SPC で次候補 C-q で記号モードを抜けずに記号挿入を追加
+
+* 3.0.1 文節長を変更したときに読みが変わらなかった問題を対処
+
+2000-10-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 3.0.0 手抜きな記号入力モードを付けてみる。C-c yc-rK-trans-key (Default 
+	なら C-c C-j) で手抜きな記号入力モードに入る。
+	＃ 記号モードと言うよりは、全角文字全てを
+	＃ コード順に並べただけのモードだけど
+
+2000-10-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.3.3 .canna の \C-\ を emacs の \C-\\ と認識するように修正した
+
+2000-10-11  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.3.2 defsymbol で定義した文字は候補選択時に defsymbol した候補のみ表示
+	するようにした
+
+2000-10-09  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.3.1 yc-server-check で cannaserver との接続を切らないようにした
+
+* 2.3.1 2.2.0 の修正で yc-kakutei が遅くなってたので字種変換結果を変換時に
+	記録するように変更した
+
+2000-10-05  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.3.0 .canna や default.canna の読み込みを多少まともにした。canna 設定ファ
+	イルのキーワード quote setq set equal = &gt &lt progn eq cond null
+	not and or + - * / % gc load list cons car cdr atom let if boundp
+	fboundp getenv concat に対応した。動作が異なるかも知れないけど
+
+2000-09-30  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.2.0 defsymbol の設定が有効になるようにする
+
+2000-09-20  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.7 cannaserver との接続確認に ping を使うのを止めて with-timeout に変
+	更(谷さん、石井さん ご指摘ありがとうございます)
+
+2000-09-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.6 yc-ping-option を system-configuration の値に応じて自動設定するよ
+	うにした。
+
+2000-09-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.5 yc-ping を ping の終了を 1 秒間だけ待つようにした。ping が 1 秒間
+	で終了しなかった場合には、強制的に刈り取る。(だけど、異常終了する
+	か、しないかは実装依存なんだろうな…)(谷さん ご指摘ありがとうござ
+	います)
+
+2000-09-07  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.4 yc-ping-option 暫定で追加(谷さん ご指摘ありがとうございます)
+
+2000-09-01  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.3 環境変数名を CANNA_LIB_DIR は止めて CANNALIBDIR のみにする(谷さん 
+	ご指摘ありがとうございます)
+
+* 2.1.3 yc ロード時に cannaserver とつながらなかったら input-method の設定
+	変更をやらないようにした(谷さん ご指摘ありがとうございます)
+
+* 2.1.3 cannaserver とつながらなかったら global-yc-mode または yc-mode ま
+	たは yc-input-mode にならないようにした(谷さん ご指摘ありがとうご
+	ざいます)
+
+2000-08-24  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.2 環境変数CANNA_LIB_DIR が無くて yc-canna-lib-path の設定もないとエ
+	ラー発生。対処済。(谷さん ご指摘ありがとうございます)
+
+2000-08-23  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.1 yc-canna-lib-path が nil になっても動くようにした。(谷さん ご指摘
+	ありがとうございます)
+
+* 2.1.1 環境変数CANNA_LIB_DIR を yc-canna-lib-path の値に引き継ぐようにし
+	た。CANNA_LIB_DIR が空文字列でも有効になるので要注意。(谷さん ご指
+	摘ありがとうございます)
+
+2000-06-29  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.1.0 大改造。コードの縮小化。global-yc-mode の追加と yc-toggle-level の
+	削除。
+
+2000-05-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.15 終了処理まわりを kill-emacs でやるようにした。シンプルにはなった
+	けど見た目は…(矢木さん ご指摘ありがとうございます)
+
+2000-05-16  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.14 yc-forward-bunsetsu で yc-yomi-hiranaga になっていた箇所を 
+	yc-yomi-hiragana に修正
+
+* 2.0.14 byte compile 時の viper 関連の warning 対策(byte-compile-depth 見
+	て良いのか？)
+
+* 2.0.14 終了時処理の変更。save-buffers-kill-emacs の書き換えを止めて 
+	defadvice する(もしくは pre-command-hook / post-command-hook で処
+	理を追加)
+
+2000-05-13  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.13 yc-defword-cancel で delete-overlay している問題を対処
+
+* 2.0.13 save-buffers-kill-emacs で終了しなかったときに yc を再初期化する
+	ようにした(矢木さん ご指摘ありがとうございます)
+
+2000-05-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.12 (not yc-use-color) の時に yc-defword で delete-overlay している問
+	 題を対処(矢木さん ご指摘ありがとうございます)
+
+* 2.0.12 id / perl が無いときに call-process の失敗を捕捉していない問題を
+	対処(矢木さん ご指摘ありがとうございます)
+
+* 2.0.12 id / perl の返却値を真偽値として判定している問題を対処(矢木さん 
+	ご指摘ありがとうございます)
+
+2000-03-13  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.11 『う゛』を変換したときに全角『゛』が半角『゛』になる問題を対処
+
+2000-03-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.10 ひら仮名入力中に C-n または C-p で字種変換するようにした。ただし、
+	YC における字種変換は漢字変換に含まれるため、間接的に漢字変換する
+	ことになる。
+
+* 2.0.9 ローマ字変換時に一文節目でローマ字-ひら仮名変換テーブルに無い文字
+	が含まれていた場合に yc-alphabet-internal で失敗する問題の対処
+
+* 2.0.8 cannaserver が死んだときに、yc から抜けなくなる(yc が cannaserver 
+	の応答を待ち続ける)問題を対処(村上さん ご指摘ありがとうございます)
+
+2000-03-10  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.7 変換時に色がつくようにした
+
+2000-03-09  Kaoru nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.5 変換中の文節が入力したローマ字で表現できない状態に分断された文節が
+	大量にある(vi を 360個入力、変換した)場合に、処理時間がかかってい
+	たのを対処。(村上さん ご指摘ありがとうございます)
+
+2000-03-08  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.4 一覧表示中に C-i で文節縮めにならなかったのを対処(村上さん ご指摘
+	ありがとうございます)
+
+* 2.0.4 『う゛』のカタカナとして『ヴ』が出るようにした(石井@ソニーさん ご
+	指摘ありがとうございます)
+
+2000-03-04  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.3 xemacs の isearch mode 時に変換を確定すると 
+	isearch-nonincremental-exit-minibuffer するようにした。個人的には
+	納得できんけど、無理に納得することにした。
+
+2000-03-03  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.2 fence モードで変換をかけて再入力を始めたときに確定をしていなかった
+	問題を対処(村田@牧丘さん ご指摘ありがとうございます)
+
+2000-03-02  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.1 canna のライブラリーパスに /var/lib/canna を追加した(村田@牧丘さん 
+	ご指摘ありがとうございます)
+
+2000-02-29  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 2.0.0 cl を使わないようにした。
+
+* 2.0.0 viper で minibuffer を使っているときに確定で minibuffer を抜けてし
+	まう問題を対処
+
+2000-02-18  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.13 canna の設定 stay-after-validate に対応(石井@ソニーさん ご指摘あ
+	りがとうございます)
+
+2000-02-16  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.12 ローマ字かなテーブルの読み込みで、 suffix が .kp のファイルの読
+	み込み時漢字コードを euc にしていなかったのを修正(石井@ソニーさん 
+	ご指摘ありがとうございます)
+
+2000-02-15  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.11 boil で変換した後に undo を実行した場合に undo を 2 回入力しない
+	とローマ字に戻らなくなっていたのを修正
+
+2000-02-11  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.10 file-exists-p や file-readable-p に nil を渡すと待っちゃうみたい
+	なんで nil を渡さないように修正(村田@牧丘さん ご指摘ありがとうござ
+	います)
+
+* 1.99.10 user辞書の作成を勝手にやるようにした。これでユーザが手でmkdicす
+	る必要はない(村田@牧丘さん ご指摘ありがとうございます)
+
+2000-02-10  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.8 default.canna と .canna の読み込み処理で default.canna の設定に 
+	.canna の設定が append してしまうのを overwrite するようにした
+	(石井@ソニーさん ご指摘ありがとうございます)
+
+2000-02-03  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.7 fence-mode の入力関数が xemacs で入力文字をとりこぼすことがあるの
+	を修正した。
+
+2000-02-01  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.5 ローマ字変換テーブルに無い文字列以降のローマ字変換が出来ない時の
+	検索打ち切り処理を追加した。(石井@ソニーさん ご指摘ありがとうござ
+	います)
+
+2000-01-31  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.3 ローマ字かな変換テーブルの検索順序の対応がいつの間にか抜けていた
+	ので再追加した。
+
+* 1.99.3 xemacs 20.4 で redirect-frame-focus が無いため、minibuffer にカー
+	ソルをもって行く処理が全滅していることが判明。対処済
+
+* 1.99.3 XEmacs 20.4 への対応。少なくとも起動できるようにはしたし、
+	fence-mode も使えるようにした。
+
+* 1.99.1 変換した文字列が長くて、文節数が膨大になった場合に凍り付く現象を
+	確認。対処済
+
+2000-01-30  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.99.0 いわゆる fence-mode をつけた
+
+1999-12-01  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* 1.0.4 ローマ字かな変換テーブルの検索順序を
+	カレント -> ホーム -> $(CANNALIBDIR)/dic
+	の順序になるようにする(三重大の本田さん パッチありがとうございます)
+
+1999-11-01  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* インクリメンタルサーチ中で確定したら、すぐにインクリメンタルサーチが再開
+  するようにした
+
+1999-10-14  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* minibuffer で変換を開始した場合に一覧モードがうまく動かない。一応、一覧
+  モードにならないようにはしたけど、細かい所でおかしいかも知れない。けど対
+  処済
+
+1999-10-13  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* インクリメンタルサーチ中にも使えるようにしてみた。ピーピーうるさいけど
+
+1999-10-12  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* minibuffer を別フレームにしている時の対処方法を変更
+
+1999-10-08  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* "う゛"を一文字として扱うようにした
+* yc のトグル範囲を指定できるようにした
+
+1999-10-07  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* かんなサーバホストを ~/.emacs で指定できるようにする(三重大の本田さん パッ
+  チありがとうございます)
+* 文節縮め時に"う゛"が分断されないようにした
+
+1999-06-17  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* minibuffer を別フレームにしている時に、選択/登録モード時のフレーム(バッ
+  ファ)の切替えがおかしい問題の対処
+
+1999-04-28  Kaoru Nakajima <knak@ceres.dti.ne.jp>
+
+* fence-mode 時の C-e の動作が遅かったのでその部分を高速化
+

@@ -1,0 +1,22 @@
+◎YCのインストール
+
+Makefile 中で以下に挙げるものが自分の環境と合っているか確認する
+
+	prefix = /usr/local
+	EMACS = emacs
+	elispdir = $(prefix)/share/emacs/site-lisp
+	INSTALL_PATH = $(prefix)/bin
+
+合っていない場合、自分の環境に合わせて適宜書き換える
+
+後はコマンドラインで以下を投入する
+
+	% make
+	% su
+	# make install
+
+◎YCの設定
+
+~/.emacs に以下を追加する
+
+(load "yc")
